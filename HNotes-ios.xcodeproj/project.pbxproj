@@ -8,23 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		2D34ADEA1F920D8B007656CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADE91F920D8B007656CD /* AppDelegate.swift */; };
-		2D34ADEC1F920D8B007656CD /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADEB1F920D8B007656CD /* FirstViewController.swift */; };
-		2D34ADEE1F920D8B007656CD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADED1F920D8B007656CD /* SecondViewController.swift */; };
+		2D34ADEC1F920D8B007656CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADEB1F920D8B007656CD /* HomeViewController.swift */; };
+		2D34ADEE1F920D8B007656CD /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADED1F920D8B007656CD /* NotesViewController.swift */; };
 		2D34ADF11F920D8B007656CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADEF1F920D8B007656CD /* Main.storyboard */; };
 		2D34ADF31F920D8B007656CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADF21F920D8B007656CD /* Assets.xcassets */; };
 		2D34ADF61F920D8B007656CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADF41F920D8B007656CD /* LaunchScreen.storyboard */; };
+		2D34AE001F921684007656CD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34ADFF1F921684007656CD /* Note.swift */; };
+		2D34AE031F921719007656CD /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE021F921719007656CD /* NotesCollectionViewCell.swift */; };
+		2D34AE071F922183007656CD /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE061F922183007656CD /* HelpFunctions.swift */; };
+		2D34AE091F922246007656CD /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE081F922246007656CD /* AuthApi.swift */; };
+		2D34AE0B1F92227D007656CD /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE0A1F92227D007656CD /* CommonData.swift */; };
+		2D34AE0D1F9222DB007656CD /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE0C1F9222DB007656CD /* Response.swift */; };
+		2D34AE101F9223AF007656CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE0F1F9223AF007656CD /* LoginViewController.swift */; };
+		2D34AE121F9223CE007656CD /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE111F9223CE007656CD /* NoteDetailViewController.swift */; };
+		2D34AE141F926F38007656CD /* UploadApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE131F926F38007656CD /* UploadApi.swift */; };
+		2D34AE161F9270E7007656CD /* NoteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34AE151F9270E7007656CD /* NoteApi.swift */; };
 		528A28D9331F653AF6079FB6 /* Pods_HNotes_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C7D4A3DAC4FAD0344BA3A0 /* Pods_HNotes_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2D34ADE61F920D8B007656CD /* HNotes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HNotes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D34ADE91F920D8B007656CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D34ADEB1F920D8B007656CD /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2D34ADED1F920D8B007656CD /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		2D34ADEB1F920D8B007656CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2D34ADED1F920D8B007656CD /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		2D34ADF01F920D8B007656CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D34ADF21F920D8B007656CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D34ADF51F920D8B007656CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D34ADF71F920D8B007656CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D34ADFF1F921684007656CD /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		2D34AE021F921719007656CD /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D34AE061F922183007656CD /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
+		2D34AE081F922246007656CD /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
+		2D34AE0A1F92227D007656CD /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
+		2D34AE0C1F9222DB007656CD /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		2D34AE0F1F9223AF007656CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2D34AE111F9223CE007656CD /* NoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
+		2D34AE131F926F38007656CD /* UploadApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadApi.swift; sourceTree = "<group>"; };
+		2D34AE151F9270E7007656CD /* NoteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteApi.swift; sourceTree = "<group>"; };
+		2D34AE181F92B954007656CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		506AA6E68869C941CF6AD406 /* Pods-HNotes-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNotes-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E2115218E64DF7C057036EEB /* Pods-HNotes-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNotes-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios.release.xcconfig"; sourceTree = "<group>"; };
 		E4C7D4A3DAC4FAD0344BA3A0 /* Pods_HNotes_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HNotes_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,15 +84,66 @@
 		2D34ADE81F920D8B007656CD /* HNotes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				2D34AE181F92B954007656CD /* GoogleService-Info.plist */,
+				2D34AE0E1F922398007656CD /* SingleViews */,
+				2D34AE051F922162007656CD /* Tool */,
+				2D34AE011F9216F7007656CD /* ViewCell */,
+				2D34ADFE1F921675007656CD /* Http */,
+				2D34ADFD1F92166F007656CD /* Model */,
 				2D34ADE91F920D8B007656CD /* AppDelegate.swift */,
-				2D34ADEB1F920D8B007656CD /* FirstViewController.swift */,
-				2D34ADED1F920D8B007656CD /* SecondViewController.swift */,
 				2D34ADEF1F920D8B007656CD /* Main.storyboard */,
 				2D34ADF21F920D8B007656CD /* Assets.xcassets */,
 				2D34ADF41F920D8B007656CD /* LaunchScreen.storyboard */,
 				2D34ADF71F920D8B007656CD /* Info.plist */,
 			);
 			path = "HNotes-ios";
+			sourceTree = "<group>";
+		};
+		2D34ADFD1F92166F007656CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D34ADFF1F921684007656CD /* Note.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D34ADFE1F921675007656CD /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				2D34AE081F922246007656CD /* AuthApi.swift */,
+				2D34AE131F926F38007656CD /* UploadApi.swift */,
+				2D34AE151F9270E7007656CD /* NoteApi.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		2D34AE011F9216F7007656CD /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2D34AE021F921719007656CD /* NotesCollectionViewCell.swift */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		2D34AE051F922162007656CD /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2D34AE061F922183007656CD /* HelpFunctions.swift */,
+				2D34AE0A1F92227D007656CD /* CommonData.swift */,
+				2D34AE0C1F9222DB007656CD /* Response.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		2D34AE0E1F922398007656CD /* SingleViews */ = {
+			isa = PBXGroup;
+			children = (
+				2D34ADEB1F920D8B007656CD /* HomeViewController.swift */,
+				2D34AE0F1F9223AF007656CD /* LoginViewController.swift */,
+				2D34AE111F9223CE007656CD /* NoteDetailViewController.swift */,
+				2D34ADED1F920D8B007656CD /* NotesViewController.swift */,
+			);
+			path = SingleViews;
 			sourceTree = "<group>";
 		};
 		4C66B33D794243DE2AAF2074 /* Frameworks */ = {
@@ -173,9 +245,13 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -184,9 +260,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,9 +298,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -234,9 +317,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D34ADEE1F920D8B007656CD /* SecondViewController.swift in Sources */,
+				2D34AE091F922246007656CD /* AuthApi.swift in Sources */,
+				2D34AE121F9223CE007656CD /* NoteDetailViewController.swift in Sources */,
+				2D34AE071F922183007656CD /* HelpFunctions.swift in Sources */,
+				2D34ADEE1F920D8B007656CD /* NotesViewController.swift in Sources */,
 				2D34ADEA1F920D8B007656CD /* AppDelegate.swift in Sources */,
-				2D34ADEC1F920D8B007656CD /* FirstViewController.swift in Sources */,
+				2D34AE141F926F38007656CD /* UploadApi.swift in Sources */,
+				2D34AE0D1F9222DB007656CD /* Response.swift in Sources */,
+				2D34AE161F9270E7007656CD /* NoteApi.swift in Sources */,
+				2D34ADEC1F920D8B007656CD /* HomeViewController.swift in Sources */,
+				2D34AE031F921719007656CD /* NotesCollectionViewCell.swift in Sources */,
+				2D34AE0B1F92227D007656CD /* CommonData.swift in Sources */,
+				2D34AE101F9223AF007656CD /* LoginViewController.swift in Sources */,
+				2D34AE001F921684007656CD /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +471,7 @@
 				DEVELOPMENT_TEAM = 7R6ZLPU53W;
 				INFOPLIST_FILE = "HNotes-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hnotes.HNotes-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hnotes.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -394,7 +487,7 @@
 				DEVELOPMENT_TEAM = 7R6ZLPU53W;
 				INFOPLIST_FILE = "HNotes-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hnotes.HNotes-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hnotes.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
