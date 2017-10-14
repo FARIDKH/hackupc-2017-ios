@@ -13,6 +13,7 @@
 		2D34ADF11F920D8B007656CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADEF1F920D8B007656CD /* Main.storyboard */; };
 		2D34ADF31F920D8B007656CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADF21F920D8B007656CD /* Assets.xcassets */; };
 		2D34ADF61F920D8B007656CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D34ADF41F920D8B007656CD /* LaunchScreen.storyboard */; };
+		528A28D9331F653AF6079FB6 /* Pods_HNotes_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C7D4A3DAC4FAD0344BA3A0 /* Pods_HNotes_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		2D34ADF21F920D8B007656CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D34ADF51F920D8B007656CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D34ADF71F920D8B007656CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506AA6E68869C941CF6AD406 /* Pods-HNotes-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNotes-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E2115218E64DF7C057036EEB /* Pods-HNotes-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HNotes-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios.release.xcconfig"; sourceTree = "<group>"; };
+		E4C7D4A3DAC4FAD0344BA3A0 /* Pods_HNotes_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HNotes_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528A28D9331F653AF6079FB6 /* Pods_HNotes_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				2D34ADE81F920D8B007656CD /* HNotes-ios */,
 				2D34ADE71F920D8B007656CD /* Products */,
+				F540A0D822D07E711583ACE4 /* Pods */,
+				4C66B33D794243DE2AAF2074 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = "HNotes-ios";
 			sourceTree = "<group>";
 		};
+		4C66B33D794243DE2AAF2074 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7D4A3DAC4FAD0344BA3A0 /* Pods_HNotes_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F540A0D822D07E711583ACE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				506AA6E68869C941CF6AD406 /* Pods-HNotes-ios.debug.xcconfig */,
+				E2115218E64DF7C057036EEB /* Pods-HNotes-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D34ADFA1F920D8B007656CD /* Build configuration list for PBXNativeTarget "HNotes-ios" */;
 			buildPhases = (
+				8DD6C41C6FFB0E3613F5156A /* [CP] Check Pods Manifest.lock */,
 				2D34ADE21F920D8B007656CD /* Sources */,
 				2D34ADE31F920D8B007656CD /* Frameworks */,
 				2D34ADE41F920D8B007656CD /* Resources */,
+				82C8AEE5C69CA44641DBE6B4 /* [CP] Embed Pods Frameworks */,
+				D77753DA17E2F99AB179ABCD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,74 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		82C8AEE5C69CA44641DBE6B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD6C41C6FFB0E3613F5156A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HNotes-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D77753DA17E2F99AB179ABCD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HNotes-ios/Pods-HNotes-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D34ADE21F920D8B007656CD /* Sources */ = {
@@ -276,6 +371,7 @@
 		};
 		2D34ADFB1F920D8B007656CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 506AA6E68869C941CF6AD406 /* Pods-HNotes-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -291,6 +387,7 @@
 		};
 		2D34ADFC1F920D8B007656CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2115218E64DF7C057036EEB /* Pods-HNotes-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
