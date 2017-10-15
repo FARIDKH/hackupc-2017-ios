@@ -72,7 +72,7 @@ class HelpFunctions {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.startPoint = CGPoint.zero;
-        gradient.endPoint = CGPoint.init(x: 1, y: 0)
+        gradient.endPoint = CGPoint.init(x: 0, y: 1)
         gradient.colors = [HelpFunctions.hexStringToUIColor(hex: startColor).cgColor, HelpFunctions.hexStringToUIColor(hex: endColor).cgColor]
         view.layer.insertSublayer(gradient, at: 0)
     }

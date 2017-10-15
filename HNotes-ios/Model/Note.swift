@@ -15,15 +15,21 @@ class Note: Object {
     @objc dynamic var title = ""
     @objc dynamic var date = ""
     @objc dynamic var content = ""
+    @objc dynamic var photoUrl = ""
+    @objc dynamic var unique_id = ""
     
-    func getInstance(from_data: Any) -> Note{
-        let json = JSON(from_data)
+    func getInstance(from_data: JSON) -> Note{
+        let json = from_data
         
         let instance = Note()
         instance.id = json["id"].intValue
         instance.title = json["title"].stringValue
-        instance.date = json["date"].stringValue
+        instance.date = json["updated_at"].stringValue
         instance.content = json["content"].stringValue
+        instance.photoUrl = json["image_url"].stringValue
+        instance.unique_id = json["unique_id"].stringValue
+        
+        print(instance)
         
         return instance
     }

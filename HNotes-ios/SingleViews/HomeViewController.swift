@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         updateAuthView()
     }
 
@@ -39,6 +40,8 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     func initVars(){
+        HelpFunctions.createGradientBg(view: self.view, startColor: "#0093e9", endColor: "#80d0c7")
+        
         tapGestureRecognizer.numberOfTapsRequired = 1
         
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTakePhoto(_:)))
@@ -54,7 +57,13 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     func updateAuthView(){
-        
+        if(isLogged){
+            self.authText.text = AuthApi.getMyUserName()
+            self.authIc.image = UIImage.init(named: "ic_logout")
+        }else{
+            self.authText.text = "Login"
+            self.authIc.image = UIImage.init(named: "ic_login")
+        }
     }
 
     // MARK: - Click handler
@@ -80,10 +89,8 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     @objc func onHistory(_ recognizer: UITapGestureRecognizer) {
-        if(AuthApi.hasLocalUserData()){
-            onLogout()
-        } else {
-            onLogin()
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotesViewController") as? NotesViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -94,6 +101,7 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     func onLogout(){
+        AuthApi.removePostParams()
         
     }
     
@@ -111,15 +119,19 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
         
         if(images.count < 1){ return }
         
-        UploadApi().upload(image: images[0]) { (result, message, note) in
+        UploadApi().upload(image: images[0]) { (result, message, resultNote) in
             if(result == 1){
+                print("result home")
+                print(resultNote)
                 let realm = try! Realm()
                 
                 try! realm.write {
-                    realm.add(note)
+                    realm.add(resultNote)
                 }
-            }else{
                 
+                HelpFunctions.showSuccessCardAlert("Image uploaded successfully", showButton: false)
+            }else{
+                HelpFunctions.showErrorCardAlert("Error occured", showButton: true)
             }
         }
     }

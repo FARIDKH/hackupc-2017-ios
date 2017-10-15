@@ -12,15 +12,25 @@ import FBSDKLoginKit
 import SwiftyJSON
 
 struct AuthKeys{
-    let token = "token"
     let id = "user_id"
+    let name = "user_name"
+    let token = "token"
 }
 
 class AuthApi {
-    var commonData: CommonData;
+    var commonData: CommonData
     
     init() {
-        self.commonData = CommonData();
+        self.commonData = CommonData()
+    }
+    
+    static func getMyUserName() -> String {
+        if hasLocalUserData() {
+            let defaults = UserDefaults.standard
+            return defaults.string(forKey: AuthKeys().name) ?? ""
+        } else {
+            return ""
+        }
     }
     
     static func getMyUserId() -> Int{
@@ -32,10 +42,11 @@ class AuthApi {
         }
     }
     
-    static func setPostParams(userId: Int, token: String){
+    static func setPostParams(userId: Int, token: String, userName: String){
         let defaults = UserDefaults.standard
         defaults.setValue(token, forKey: AuthKeys().token)
         defaults.setValue(userId, forKey: AuthKeys().id)
+        defaults.setValue(userName, forKey: AuthKeys().name)
         defaults.synchronize()
     }
     
@@ -47,9 +58,10 @@ class AuthApi {
     static func removePostParams() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: AuthKeys().token)
+        defaults.removeObject(forKey: AuthKeys().id)
+        defaults.removeObject(forKey: AuthKeys().name)
         defaults.synchronize()
         FBSDKLoginManager().logOut()
-        //        AuthApi().logout()
     }
     
     static func hasLocalUserData() -> Bool{
@@ -58,24 +70,23 @@ class AuthApi {
     }
     
     func login (
-        email: String,
-        password: String,
+        access_token: String,
         onComplete: ((_ result: Int, _ message: String) -> Void)? = nil) {
         
-        let parameters: Parameters = [
-            "email": email,
-            "password": password];
+        let parameters: Parameters = ["access_token": access_token]
         
-        Alamofire.request(self.commonData.getServerUrl() + "user/login", method: .post, parameters: parameters).responseJSON { responseJson in
+        Alamofire.request(self.commonData.getServerUrl() + "login/facebook", method: .post, parameters: parameters).responseJSON { responseJson in
             
             switch responseJson.result {
             case .success(_):
                 let json = JSON(responseJson.data as Any)
                 
+                print(json)
+                
                 if Response().checkResponseFromJson(json: json.rawValue) == 1 {
-                    AuthApi.setPostParams(userId: json["userid"].intValue, token: json["token"].stringValue)
+                    AuthApi.setPostParams(userId: json["data"]["user"]["id"].intValue, token: json["data"]["user"]["api_token"].stringValue, userName: json["data"]["user"]["full_name"].stringValue)
                     onComplete?(1, "")
-                }else{
+                } else {
                     onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json))
                 }
             case .failure(_):

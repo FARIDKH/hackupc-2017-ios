@@ -5,6 +5,9 @@ target 'HNotes-ios' do
 
   # Pods for HNotes-ios
 
+  #Cache image
+  pod 'Kingfisher'
+
   #Camera
   pod 'ImagePicker'
 
@@ -27,14 +30,4 @@ target 'HNotes-ios' do
   #Google login
   pod 'GoogleSignIn'
   
-end
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        if target.name == 'ImagePicker'
-            target.build_configurations.each do |config|
-                config.build_settings['SWIFT_VERSION'] = '3.1'
-            end
-        end
-    end
 end

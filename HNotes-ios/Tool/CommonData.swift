@@ -12,7 +12,7 @@ class CommonData{
     var server_url: String;
     
     init(){
-        self.server_url = "http://hnotes.org/api/"
+        self.server_url = "http://www.hnotes.org/api/"
     }
     
     func getServerUrl() -> String{

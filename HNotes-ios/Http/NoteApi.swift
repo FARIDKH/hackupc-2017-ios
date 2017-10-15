@@ -31,7 +31,6 @@ class NoteApi {
                 let json = JSON(responseJson.data as Any)
                 
                 if Response().checkResponseFromJson(json: json.rawValue) == 1 {
-                    AuthApi.setPostParams(userId: json["userid"].intValue, token: json["token"].stringValue)
                     onComplete?(1, "")
                 }else{
                     onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json))
@@ -57,7 +56,6 @@ class NoteApi {
                 let json = JSON(responseJson.data as Any)
                 
                 if Response().checkResponseFromJson(json: json.rawValue) == 1 {
-                    AuthApi.setPostParams(userId: json["userid"].intValue, token: json["token"].stringValue)
                     onComplete?(1, "", notes)
                 } else {
                     onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json), notes)
@@ -65,6 +63,78 @@ class NoteApi {
             case .failure(_):
                 onComplete?(
                     0, "Error occurred", notes)
+            }
+        }
+    }
+    
+    func deleteNote (
+        id: String,
+        onComplete: ((_ result: Int, _ message: String) -> Void)? = nil) {
+        
+        let parameters: Parameters = AuthApi.getPostParams()
+        
+        Alamofire.request("\(self.commonData.getServerUrl())notes/delete/\(id)?user_id=\(String(describing: parameters[AuthKeys().id]))&api_token=\(String(describing: parameters[AuthKeys().token]))").responseJSON { responseJson in
+            
+            switch responseJson.result {
+                
+            case .success(_):
+                let json = JSON(responseJson.data as Any)
+                
+                if Response().checkResponseFromJson(json: json.rawValue) == 1 {
+                    onComplete?(1, "")
+                } else {
+                    onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json))
+                }
+            case .failure(_):
+                onComplete?(
+                    0, "Error occurred")
+            }
+        }
+    }
+    
+    func uploadPhoto(_ image_file: UIImage,
+                     onComplete: ((_ result: Int, _ message: String, _ note: Note) -> Void)? = nil){
+        
+        let parameters: Parameters = [
+            "title": "Test-ios"
+        ];
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(
+                UIImageJPEGRepresentation(image_file, 1)!,
+                withName: "image",
+                fileName: "testios.jpeg",
+                mimeType: "image/jpeg")
+            for (key, value) in parameters {
+                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+            }
+        }, to: self.commonData.getServerUrl() + "/notes")
+        { (result) in
+            
+            let note = Note()
+            
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    //Print progress
+                })
+                
+                upload.responseJSON { responseJson in
+                    let json = JSON(responseJson.data as Any)
+                    
+                    print(json)
+                    
+                    if Response().checkResponseFromJson(json: json.rawValue) == 1 {
+                        AuthApi.setPostParams(userId: json["data"]["user"]["id"].intValue, token: json["data"]["user"]["api_token"].stringValue, userName: json["data"]["user"]["full_name"].stringValue)
+                        onComplete?(1, "", note)
+                    } else {
+                        onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json), note)
+                    }
+                }
+                
+            case .failure(_):
+                onComplete?(0, NSLocalizedString("connection_error", comment: ""), note)
             }
         }
     }

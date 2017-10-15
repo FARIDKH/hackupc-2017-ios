@@ -10,8 +10,9 @@ import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, UIGestureRecognizerDelegate {
 
+    @IBOutlet weak var backIc: UIImageView!
     @IBOutlet weak var googleView: UIView!
     @IBOutlet weak var fbView: UIView!
     
@@ -20,7 +21,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.receiveToggleAuthUINotification(_:)),
                                                name: NSNotification.Name(rawValue: "ToggleAuthUINotification"),
@@ -34,6 +35,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     func initViews(){
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        HelpFunctions.createGradientBg(view: self.view, startColor: "#0093e9", endColor: "#80d0c7")
+
+        //facebook button
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onBack(_:)))
+        backIc.addGestureRecognizer(tapGestureRecognizer)
+        
         //facebook button
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onLoginViaFacebook(_:)))
         fbView.addGestureRecognizer(tapGestureRecognizer)
@@ -49,7 +58,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     //fb login
     @objc func onLoginViaFacebook(_ sender: Any) {
         HelpFunctions.showProgress(indicator: indicator, type: true)
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self){
+        FBSDKLoginManager().logIn(withReadPermissions: ["public_profile"], from: self){
             (result, err) in
             
             if err != nil{
@@ -57,7 +66,21 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 HelpFunctions.showErrorAlert(NSLocalizedString("error_facebook_login", comment: ""), self)
                 return;
             }
-            self.getFacebookEmailAddress();
+            
+            if(result?.token.tokenString != nil){
+                AuthApi().login(access_token: (result?.token.tokenString)!!, onComplete: { (result, message) in
+                    HelpFunctions.showProgress(indicator: self.indicator, type: false)
+                    if(result == 1) {
+                        HelpFunctions.showSuccessCardAlert("Successful login", showButton: false)
+                        if let parent = self.navigationController?.parent as? HomeViewController {
+                            parent.isLogged = true
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    } else {
+                        HelpFunctions.showErrorCardAlert("Sorry, error occured while login", showButton: true)
+                    }
+                })
+            }
         }
     }
     
@@ -82,25 +105,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    func getFacebookEmailAddress(){
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email"]).start {
-            (connection, result, err) in
-            
-            if err != nil{
-                HelpFunctions.showProgress(indicator: self.indicator, type: false)
-                HelpFunctions.showErrorAlert(NSLocalizedString("error_fetching_facebook_data", comment: ""), self)
-                return
-            }
-            
-            let fbResult = result as! Dictionary<String, Any>
-            
-//            Auth().socialLogin(full_name: fbResult["name"] as? String ?? "", email: fbResult["email"] as? String ?? "", facebook_id: fbResult["id"] as? String ?? "", onComplete: { (result, message) in
-//                Auth.setSocialParams(isSocialLogin: true, facebook_id: fbResult["id"] as? String ?? "")
-//                self.onComplete(result: result, message: message)
-//            })
-        }
-    }
-    
     //complete login
     func onComplete(result: Bool, message: String){
         HelpFunctions.showProgress(indicator: indicator, type: false)
@@ -115,6 +119,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
 
+    @objc func onBack(_ sender: Any){
+        self.navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 

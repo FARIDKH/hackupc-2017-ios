@@ -24,15 +24,15 @@ class UploadApi {
         let imgData = UIImageJPEGRepresentation(image, 0.5)!
         var resultNote = Note()
         
-        let parameters = ["name": "test"]
+        let parameters = ["title": "test-ios"]
         
         Alamofire.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(imgData, withName: "fileset", fileName: "file.jpg", mimeType: "image/jpg")
+            multipartFormData.append(imgData, withName: "image", fileName: "sometest.jpg", mimeType: "image/jpeg")
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
             }
         },
-                         to: commonData.getServerUrl() + "upload")
+                         to: commonData.getServerUrl() + "notes")
         { (result) in
             switch result {
             case .success(let upload, _, _):
@@ -42,11 +42,14 @@ class UploadApi {
                 })
                 
                 upload.responseJSON { responseJson in
-                    print(responseJson.result.value ?? "")
-                    
                     let json = JSON(responseJson.data as Any)
                     
+                    print(json)
+                    print("success")
+                    
                     if Response().checkResponseFromJson(json: json.rawValue) == 1 {
+                        resultNote = Note().getInstance(from_data: json["note"])
+                        
                         onComplete?(1, "", resultNote)
                     }else{
                         onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json), resultNote)
@@ -54,7 +57,6 @@ class UploadApi {
                 }
                 
             case .failure(let encodingError):
-                print(encodingError)
                 onComplete?(0, "Encoding error has been occurred, please retry later", resultNote)
             }
         }
