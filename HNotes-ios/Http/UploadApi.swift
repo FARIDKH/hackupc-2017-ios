@@ -24,7 +24,12 @@ class UploadApi {
         let imgData = UIImageJPEGRepresentation(image, 0.5)!
         var resultNote = Note()
         
-        let parameters = ["title": "test-ios"]
+        var parameters = ["title": "test-ios"]
+        
+        if(AuthApi.hasLocalUserData()){
+            parameters = AuthApi.getPostParams()
+            parameters["title"] = "test-ios"
+        }
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imgData, withName: "image", fileName: "sometest.jpg", mimeType: "image/jpeg")
