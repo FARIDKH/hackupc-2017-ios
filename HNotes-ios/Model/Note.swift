@@ -28,9 +28,7 @@ class Note: Object {
         instance.content = json["content"].stringValue
         instance.photoUrl = json["image_url"].stringValue
         instance.unique_id = json["unique_id"].stringValue
-        
-        print(instance)
-        
+                
         return instance
     }
     
@@ -41,6 +39,7 @@ class Note: Object {
         for (_,subJson):(String, JSON) in json {
             array.append(getInstance(from_data: subJson))
         }
+        print(array)
         
         return array
     }

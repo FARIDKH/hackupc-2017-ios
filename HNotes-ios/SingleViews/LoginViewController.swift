@@ -71,10 +71,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UIGestureRecog
                 AuthApi().login(access_token: (result?.token.tokenString)!!, onComplete: { (result, message) in
                     HelpFunctions.showProgress(indicator: self.indicator, type: false)
                     if(result == 1) {
-                        HelpFunctions.showSuccessCardAlert("Successful login", showButton: false)
-                        if let parent = self.navigationController?.parent as? HomeViewController {
-                            parent.isLogged = true
-                        }
                         self.navigationController?.popViewController(animated: true)
                     } else {
                         HelpFunctions.showErrorCardAlert("Sorry, error occured while login", showButton: true)

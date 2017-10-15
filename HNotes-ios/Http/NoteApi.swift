@@ -47,8 +47,11 @@ class NoteApi {
         
         let parameters: Parameters = AuthApi.getPostParams()
         var notes = [Note]()
+        print("\(self.commonData.getServerUrl())notes?user_id=\(parameters[AuthKeys().id] as! String)&api_token=\(parameters[AuthKeys().token] as! String)")
         
         Alamofire.request("\(self.commonData.getServerUrl())notes?user_id=\(parameters[AuthKeys().id] as! String)&api_token=\(parameters[AuthKeys().token] as! String)").responseJSON { responseJson in
+            
+            print(responseJson)
             
             switch responseJson.result {
             case .success(_):
@@ -137,6 +140,36 @@ class NoteApi {
                 
             case .failure(_):
                 onComplete?(0, NSLocalizedString("connection_error", comment: ""), note)
+            }
+        }
+    }
+    
+    func getShareUrl(id: Int,
+                     onComplete: ((_ result: Int, _ message: String, _ url: String) -> Void)? = nil) {
+        
+        var parameters: Parameters = AuthApi.getPostParams()
+        parameters["note_id"] = id
+        print(parameters)
+        print("\(self.commonData.getServerUrl())notes/share")
+        
+        Alamofire.request("\(self.commonData.getServerUrl())notes/share", method: .post, parameters: parameters).responseJSON { responseJson in
+            
+            print(responseJson)
+            var shareUrl = ""
+            
+            switch responseJson.result {
+            case .success(_):
+                let json = JSON(responseJson.data as Any)
+                
+                if Response().checkResponseFromJson(json: json.rawValue) == 1 {
+                    shareUrl = json["data"]["url"].stringValue
+                    onComplete?(1, "", shareUrl)
+                } else {
+                    onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json), shareUrl)
+                }
+            case .failure(_):
+                onComplete?(
+                    0, "Error occurred", shareUrl)
             }
         }
     }

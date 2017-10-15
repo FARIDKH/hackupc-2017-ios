@@ -14,7 +14,7 @@ import SwiftyJSON
 struct AuthKeys{
     let id = "user_id"
     let name = "user_name"
-    let token = "token"
+    let token = "api_token"
 }
 
 class AuthApi {
@@ -52,7 +52,7 @@ class AuthApi {
     
     static func getPostParams() -> Dictionary<String, String>{
         let defaults = UserDefaults.standard
-        return ["user_id": defaults.string(forKey: AuthKeys().id) ?? "", "token": defaults.string(forKey: AuthKeys().token) ?? ""]
+        return ["user_id": defaults.string(forKey: AuthKeys().id) ?? "", "api_token": defaults.string(forKey: AuthKeys().token) ?? ""]
     }
     
     static func removePostParams() {

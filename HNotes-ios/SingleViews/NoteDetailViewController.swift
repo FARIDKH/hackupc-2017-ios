@@ -80,6 +80,19 @@ class NoteDetailViewController: UIViewController, WKUIDelegate {
     }
     
     @objc func onShare(_ recognizer: UITapGestureRecognizer){
-        self.navigationController?.popViewController(animated: true)
+        NoteApi().getShareUrl(id: note.id) { (result, message, shareUrl) in
+            if result == 1 {
+                print(shareUrl)
+                if let link = URL(string: shareUrl)
+                {
+                    let objectsToShare = ["\(self.note.title)", link] as [Any]
+                    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                    activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+                    self.present(activityVC, animated: true, completion: nil)
+                }
+            }else{
+                HelpFunctions.showErrorCardAlert("Error occured", showButton: false)
+            }
+        }
     }
 }

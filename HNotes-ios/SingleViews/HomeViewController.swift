@@ -56,6 +56,8 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     func updateAuthView(){
+        isLogged = AuthApi.hasLocalUserData()
+        
         if(isLogged) {
             print("isLogged")
             self.authText.text = AuthApi.getMyUserName()

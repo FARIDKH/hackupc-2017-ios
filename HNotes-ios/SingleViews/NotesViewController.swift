@@ -34,18 +34,19 @@ UIGestureRecognizerDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         if(AuthApi.hasLocalUserData()){
+            print("logged user")
             NoteApi().getNotes(onComplete: { (result, message, resultNotes) in
                 if(result == 1){
+                    self.notes.removeAll()
                     self.notes.append(contentsOf: resultNotes)
+                    self.collectionView.reloadData()
                 } else {
                     HelpFunctions.showErrorCardAlert("Error occured while getting your history notes", showButton: false)
                 }
             })
         }else{
+            print("not user")
             let realm = try! Realm()
-            
-            //            let localNotes = realm.objects(Note.self)
-            //            notes.append(contentsOf: localNotes)
             
             notes = Array(realm.objects(Note.self.self))
         }
@@ -140,6 +141,20 @@ UIGestureRecognizerDelegate{
         let tapLocation = sender.location(in: self.collectionView)
         let indexPath = self.collectionView.indexPathForItem(at: tapLocation)! as NSIndexPath
         
+        NoteApi().getShareUrl(id: notes[indexPath.row].id) { (result, message, shareUrl) in
+            if result == 1 {
+                print(shareUrl)
+                if let link = URL(string: shareUrl)
+                {
+                    let objectsToShare = ["\(self.notes[indexPath.row].title)", link] as [Any]
+                    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                    activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+                    self.present(activityVC, animated: true, completion: nil)
+                }
+            }else{
+                HelpFunctions.showErrorCardAlert("Error occured", showButton: false)
+            }
+        }
     }
     
     @objc func onDelete(sender : UITapGestureRecognizer){

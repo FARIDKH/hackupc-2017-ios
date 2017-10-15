@@ -30,6 +30,7 @@ class UploadApi {
             parameters = AuthApi.getPostParams()
             parameters["title"] = "test-ios"
         }
+        print(parameters)
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imgData, withName: "image", fileName: "sometest.jpg", mimeType: "image/jpeg")
