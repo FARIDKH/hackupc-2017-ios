@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
         updateAuthView()
     }
 
@@ -57,10 +56,12 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     }
     
     func updateAuthView(){
-        if(isLogged){
+        if(isLogged) {
+            print("isLogged")
             self.authText.text = AuthApi.getMyUserName()
             self.authIc.image = UIImage.init(named: "ic_logout")
-        }else{
+        } else {
+            print("notLogged")
             self.authText.text = "Login"
             self.authIc.image = UIImage.init(named: "ic_login")
         }
@@ -102,7 +103,10 @@ class HomeViewController: UIViewController, ImagePickerDelegate{
     
     func onLogout(){
         AuthApi.removePostParams()
-        
+        isLogged = false
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     // MARK: - ImagePickerDelegate

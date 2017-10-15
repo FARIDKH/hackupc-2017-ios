@@ -60,14 +60,6 @@ class NoteDetailViewController: UIViewController, WKUIDelegate {
     
     @objc func onDelete(_ recognizer: UITapGestureRecognizer){
         if(AuthApi.hasLocalUserData()){
-            let realm = try! Realm()
-            let deleteObjs = realm.objects(Note.self).filter("id == %@", note.id)
-            
-            try! realm.write {
-                realm.delete(deleteObjs)
-                self.navigationController?.popViewController(animated: true)
-            }
-        } else {
             NoteApi().deleteNote(id: note.unique_id, onComplete: { (result, message) in
                 if result == 1 {
                     HelpFunctions.showSuccessCardAlert("Note has been deleted", showButton: false)
@@ -76,6 +68,14 @@ class NoteDetailViewController: UIViewController, WKUIDelegate {
                     HelpFunctions.showErrorCardAlert("Error occured", showButton: false)
                 }
             })
+        } else {
+            let realm = try! Realm()
+            let deleteObjs = realm.objects(Note.self).filter("id == %@", note.id)
+            
+            try! realm.write {
+                realm.delete(deleteObjs)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     

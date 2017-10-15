@@ -34,8 +34,8 @@ class Note: Object {
         return instance
     }
     
-    func getInstanceArray(from_data: Any) -> [Note]{
-        let json = JSON(from_data)
+    func getInstanceArray(from_data: JSON) -> [Note]{
+        let json = from_data
         
         var array = [Note]()
         for (_,subJson):(String, JSON) in json {

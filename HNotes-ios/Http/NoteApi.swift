@@ -48,14 +48,14 @@ class NoteApi {
         let parameters: Parameters = AuthApi.getPostParams()
         var notes = [Note]()
         
-        Alamofire.request("\(self.commonData.getServerUrl())user/notes?user_id=\(String(describing: parameters[AuthKeys().id]))&api_token=\(String(describing: parameters[AuthKeys().token]))").responseJSON { responseJson in
+        Alamofire.request("\(self.commonData.getServerUrl())notes?user_id=\(parameters[AuthKeys().id] as! String)&api_token=\(parameters[AuthKeys().token] as! String)").responseJSON { responseJson in
             
             switch responseJson.result {
-            
             case .success(_):
                 let json = JSON(responseJson.data as Any)
                 
                 if Response().checkResponseFromJson(json: json.rawValue) == 1 {
+                    notes = Note().getInstanceArray(from_data: json["data"]["notes"])
                     onComplete?(1, "", notes)
                 } else {
                     onComplete?(Response().checkResponseFromJson(json: json.rawValue), Response().getErrorMessageFromJson(json: json), notes)
@@ -72,6 +72,8 @@ class NoteApi {
         onComplete: ((_ result: Int, _ message: String) -> Void)? = nil) {
         
         let parameters: Parameters = AuthApi.getPostParams()
+        
+        print("\(self.commonData.getServerUrl())notes/delete/\(id)?user_id=\(String(describing: parameters[AuthKeys().id]))&api_token=\(String(describing: parameters[AuthKeys().token]))")
         
         Alamofire.request("\(self.commonData.getServerUrl())notes/delete/\(id)?user_id=\(String(describing: parameters[AuthKeys().id]))&api_token=\(String(describing: parameters[AuthKeys().token]))").responseJSON { responseJson in
             

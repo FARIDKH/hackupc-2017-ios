@@ -52,7 +52,7 @@ class AuthApi {
     
     static func getPostParams() -> Dictionary<String, String>{
         let defaults = UserDefaults.standard
-        return ["userid": defaults.string(forKey: AuthKeys().id) ?? "", "token": defaults.string(forKey: AuthKeys().token) ?? ""]
+        return ["user_id": defaults.string(forKey: AuthKeys().id) ?? "", "token": defaults.string(forKey: AuthKeys().token) ?? ""]
     }
     
     static func removePostParams() {
@@ -81,7 +81,7 @@ class AuthApi {
             case .success(_):
                 let json = JSON(responseJson.data as Any)
                 
-                print(json)
+//                print(json)
                 
                 if Response().checkResponseFromJson(json: json.rawValue) == 1 {
                     AuthApi.setPostParams(userId: json["data"]["user"]["id"].intValue, token: json["data"]["user"]["api_token"].stringValue, userName: json["data"]["user"]["full_name"].stringValue)

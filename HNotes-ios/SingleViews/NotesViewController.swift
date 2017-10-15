@@ -147,15 +147,6 @@ UIGestureRecognizerDelegate{
         let indexPath = self.collectionView.indexPathForItem(at: tapLocation)! as NSIndexPath
         
         if(AuthApi.hasLocalUserData()){
-            let realm = try! Realm()
-            let deleteObjs = realm.objects(Note.self).filter("id == %@", notes[indexPath.row].id)
-            
-            try! realm.write {
-                realm.delete(deleteObjs)
-                notes.remove(at: indexPath.row)
-                collectionView.reloadData()
-            }
-        }else{
             NoteApi().deleteNote(id: notes[indexPath.row].unique_id, onComplete: { (result, message) in
                 if result == 1 {
                     HelpFunctions.showSuccessCardAlert("Note has been deleted", showButton: false)
@@ -165,8 +156,16 @@ UIGestureRecognizerDelegate{
                     HelpFunctions.showErrorCardAlert("Error occured", showButton: false)
                 }
             })
+        }else{
+            let realm = try! Realm()
+            let deleteObjs = realm.objects(Note.self).filter("id == %@", notes[indexPath.row].id)
+            
+            try! realm.write {
+                realm.delete(deleteObjs)
+                notes.remove(at: indexPath.row)
+                collectionView.reloadData()
+            }
         }
-        
     }
     
     // MARK: - Click handler

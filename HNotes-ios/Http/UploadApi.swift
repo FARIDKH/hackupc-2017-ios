@@ -44,9 +44,6 @@ class UploadApi {
                 upload.responseJSON { responseJson in
                     let json = JSON(responseJson.data as Any)
                     
-                    print(json)
-                    print("success")
-                    
                     if Response().checkResponseFromJson(json: json.rawValue) == 1 {
                         resultNote = Note().getInstance(from_data: json["note"])
                         
